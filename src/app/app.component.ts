@@ -20,7 +20,7 @@ export class AppComponent {
       data: dialogData,
       backdropClass: 'cdk-overlay-transparent-backdrop',
       width: "700px",
-      height: "500px",
+      height: "520px",
     });
     const dialogResult = await dialogRef.afterClosed().toPromise();
   }
