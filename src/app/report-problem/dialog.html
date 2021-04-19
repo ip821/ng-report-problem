@@ -46,10 +46,27 @@
     </mat-step>
 
     <mat-step label="Gather logs"
+      #gatherLogsStep
       [editable]="false">
-      <button mat-raised-button
-        color="primary"
-        matStepperNext>Next</button>
+
+      <div style="margin-top: 10px; margin-bottom: 10px; display: flex; justify-content: center;"
+        *ngIf="inProgress">
+        <mat-spinner diameter="20"></mat-spinner>
+        <label>Preparing logs...</label>
+      </div>
+
+      <div style="margin-top: 10px; margin-bottom: 10px; display: flex; justify-content: center;"
+        *ngIf="!inProgress">
+        <mat-icon color="primary">done</mat-icon>
+        <label style="margin-top: 3px;">Done!</label>
+      </div>
+
+      <div style="text-align: center;display: block;">
+        <button mat-raised-button
+          color="primary"
+          [disabled]="inProgress"
+          matStepperNext>Next</button>
+      </div>
     </mat-step>
 
     <mat-step label="Complete"
