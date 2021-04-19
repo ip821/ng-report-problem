@@ -1,0 +1,10 @@
+<div [formGroup]="form">
+
+  <mat-form-field style="width: 100%;">
+    <mat-label>Short description</mat-label>
+    <textarea matInput
+      [formControl]="form.shortDescriptionControl"
+      rows="8"
+      cols=40></textarea>
+  </mat-form-field>
+</div>

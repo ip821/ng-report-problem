@@ -1,0 +1,79 @@
+<mat-toolbar mat-dialog-title
+  color="basic"
+  style="display: flex;">
+  <p>Report a problem</p>
+  <span style="flex: 1 1 auto"></span>
+  <button mat-button
+    mat-dialog-close>Cancel</button>
+</mat-toolbar>
+
+<mat-dialog-content>
+
+  <mat-horizontal-stepper linear>
+
+    <mat-step label="Attach screenshot"
+      [editable]="false">
+      <div style="display: flex; justify-content: center; width: 100%; flex-direction: column;">
+        <div>
+          <cr-screenshot></cr-screenshot>
+        </div>
+        <div style="text-align: center;">
+          <button mat-raised-button
+            color="primary"
+            matStepperNext>Next</button>
+        </div>
+      </div>
+    </mat-step>
+
+    <mat-step label="General info"
+      [editable]="false"
+      [stepControl]="generalInfoForm">
+
+      <div style="display: flex; justify-content: center; width: 100%; flex-direction: column; margin-top: 10px;">
+
+        <div>
+          <cr-general-info [form]="generalInfoForm"></cr-general-info>
+        </div>
+
+        <div style="text-align: center; ">
+          <button mat-raised-button
+            color="primary"
+            matStepperNext>Next</button>
+        </div>
+
+      </div>
+
+    </mat-step>
+
+    <mat-step label="Gather logs"
+      [editable]="false">
+      <button mat-raised-button
+        color="primary"
+        matStepperNext>Next</button>
+    </mat-step>
+
+    <mat-step label="Complete"
+      [editable]="false">
+      <div style="height: 100%;">
+        <div style="text-align: center;">
+          <p>Ticket successfully created!</p>
+          <button mat-raised-button
+            mat-dialog-close
+            color="primary">Close</button>
+        </div>
+      </div>
+    </mat-step>
+
+  </mat-horizontal-stepper>
+
+</mat-dialog-content>
+
+<!-- <mat-dialog-actions>
+
+  <button mat-button
+    mat-dialog-close>Cancel</button>
+
+  <button mat-button
+    [mat-dialog-close]="result">Delete</button>
+
+</mat-dialog-actions> -->
