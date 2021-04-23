@@ -1,14 +1,15 @@
-import { Component, ElementRef, ViewChild } from "@angular/core";
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
 import { MatDialogContainer } from "@angular/material/dialog";
 
 @Component({
   selector: 'cr-screenshot',
   templateUrl: './screenshot.component.html'
 })
-export class ScreenshotComponent {
+export class ScreenshotComponent implements OnInit, AfterViewInit {
 
   constructor(
-    public dialogContainer: MatDialogContainer
+    public dialogContainer: MatDialogContainer,
+    private changeDetector: ChangeDetectorRef
   ) {
   }
 
@@ -21,13 +22,29 @@ export class ScreenshotComponent {
   @ViewChild("img")
   public img: ElementRef | null = null;
 
-  public async makeScreenshot(ev: Event) {
+  @ViewChild('recordedVideo')
+  public recordedVideo: ElementRef | null = null;
 
-    ev.stopPropagation();
-    ev.preventDefault();
+  @Input() public recordedVideoContent: any = null;
+
+  async ngOnInit() {
+  }
+
+  async ngAfterViewInit(): Promise<void> {
+    if (this.recordedVideo && this.recordedVideoContent) {
+      this.recordedVideo.nativeElement.src = this.recordedVideoContent;
+    }
+    else {
+      await this.makeScreenshot();
+    }
+  }
+
+  public async makeScreenshot() {
 
     Array.from(document.querySelectorAll('mat-dialog-container'))
       .forEach(node => (<HTMLElement>node).style.display = 'none');
+
+    this.changeDetector.detectChanges();
 
     try {
       if (
@@ -58,7 +75,8 @@ export class ScreenshotComponent {
       }
     } finally {
       Array.from(document.querySelectorAll('mat-dialog-container'))
-      .forEach(node => (<HTMLElement>node).style.display = '');
+        .forEach(node => (<HTMLElement>node).style.display = '');
+      this.changeDetector.detectChanges();
     }
   }
 

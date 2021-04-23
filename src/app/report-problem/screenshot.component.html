@@ -6,11 +6,15 @@
   <canvas #canvas
     hidden=true></canvas>
 
-  <a href="#"
-    style="display: flex; justify-content: center;"
-    (click)="makeScreenshot($event)">Click here to attach a screenshot</a>
+  <div [hidden]="recordedVideoContent">
+    <img #img
+      style="width: 50%;height: 200px;margin-bottom: 10px; margin-top: 10px; margin-left: auto; margin-right: auto; display: block;" />
+  </div>
 
-  <img #img
-    style="width: 50%;height: 200px;margin-bottom: 10px; margin-top: 10px; margin-left: auto; margin-right: auto; display: block;" />
-
+  <div style="text-align: center;"
+    [hidden]="!recordedVideoContent">
+    <video #recordedVideo
+      controls
+      style="width: 50%;height: 200px"></video>
+  </div>
 </div>

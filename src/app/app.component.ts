@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ReportDialogComponent } from './report-problem/dialog';
-import { ReportDialogData } from './report-problem/dialog-data';
+import { IDialogData } from './report-problem/dialog-data';
+import { VideoRecorder } from './screen-recording/video-recorder';
 
 @Component({
   selector: 'app-root',
@@ -14,8 +15,20 @@ export class AppComponent {
   ) {
   }
 
-  public async reportProblemClicked() {
-    const dialogData = new ReportDialogData();
+  public async takeScreenshot() {
+    await this.openDialog();
+  }
+
+  public async recordVideo() {
+    const videRecorder = new VideoRecorder();
+    const recordedVideo = await videRecorder.record();
+    await this.openDialog(recordedVideo);
+  }
+
+  public async openDialog(recordedVideoContent: any = null) {
+    const dialogData: IDialogData = {
+      recordedVideoContent: recordedVideoContent
+    };
     const dialogRef = this.dialog.open(ReportDialogComponent, {
       data: dialogData,
       backdropClass: 'cdk-overlay-transparent-backdrop',

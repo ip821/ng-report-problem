@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, Inject, OnInit, ViewChild } from "@angular/core";
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { MatStepper } from "@angular/material/stepper";
-import { ReportDialogData as ReportDialogData, ReprotDialogResult } from "./dialog-data";
+import { IDialogData, ReprotDialogResult } from "./dialog-data";
 import { GeneralInfoFormGroup } from "./general-info.component";
 
 @Component({
@@ -10,7 +10,7 @@ import { GeneralInfoFormGroup } from "./general-info.component";
 export class ReportDialogComponent implements OnInit, AfterViewInit {
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) private data: ReportDialogData
+    @Inject(MAT_DIALOG_DATA) public data: IDialogData
   ) {
     this.generalInfoForm = new GeneralInfoFormGroup();
   }

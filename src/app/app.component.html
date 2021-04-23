@@ -1,15 +1,23 @@
 <mat-toolbar color="primary">
-  <button mat-icon-button>
-    <mat-icon>menu</mat-icon>
-  </button>
-
   <span>My Sandbox</span>
 
   <span style="flex: 1 1 auto;"></span>
 
   <button color="basic"
     mat-flat-button
-    (click)="reportProblemClicked()">Report a problem</button>
+    [matMenuTriggerFor]="menu">Report a problem</button>
+
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item
+      (click)="takeScreenshot()">
+      Take a screenshot
+    </button>
+    <button mat-menu-item
+      (click)="recordVideo()">
+      Record a video
+    </button>
+  </mat-menu>
+
 </mat-toolbar>
 
 <div style="width: 100%;">

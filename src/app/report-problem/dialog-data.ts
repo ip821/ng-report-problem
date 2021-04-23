@@ -1,5 +1,5 @@
-export class ReportDialogData {
-
+export interface IDialogData {
+  recordedVideoContent: any;
 }
 
 export class ReprotDialogResult {
