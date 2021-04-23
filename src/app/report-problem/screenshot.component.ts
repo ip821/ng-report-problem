@@ -1,5 +1,6 @@
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
 import { MatDialogContainer } from "@angular/material/dialog";
+import { IObjectURL } from "../screen-recording/video-recorder";
 
 @Component({
   selector: 'cr-screenshot',
@@ -25,14 +26,14 @@ export class ScreenshotComponent implements OnInit, AfterViewInit {
   @ViewChild('recordedVideo')
   public recordedVideo: ElementRef | null = null;
 
-  @Input() public recordedVideoContent: any = null;
+  @Input() public videoUrl: IObjectURL | null = null;
 
   async ngOnInit() {
   }
 
   async ngAfterViewInit(): Promise<void> {
-    if (this.recordedVideo && this.recordedVideoContent) {
-      this.recordedVideo.nativeElement.src = this.recordedVideoContent;
+    if (this.recordedVideo && this.videoUrl) {
+      this.recordedVideo.nativeElement.src = this.videoUrl.url;
     }
     else {
       await this.makeScreenshot();

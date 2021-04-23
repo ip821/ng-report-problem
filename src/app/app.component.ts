@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ReportDialogComponent } from './report-problem/dialog';
 import { IDialogData } from './report-problem/dialog-data';
-import { VideoRecorder } from './screen-recording/video-recorder';
+import { IObjectURL, VideoRecorder } from './screen-recording/video-recorder';
 
 @Component({
   selector: 'app-root',
@@ -21,13 +21,13 @@ export class AppComponent {
 
   public async recordVideo() {
     const videRecorder = new VideoRecorder();
-    const recordedVideo = await videRecorder.record();
-    await this.openDialog(recordedVideo);
+    const recordedVideoUrl = await videRecorder.record();
+    await this.openDialog(recordedVideoUrl);
   }
 
-  public async openDialog(recordedVideoContent: any = null) {
+  public async openDialog(recordedVideoUrl: IObjectURL | null = null) {
     const dialogData: IDialogData = {
-      recordedVideoContent: recordedVideoContent
+      videoUrl: recordedVideoUrl
     };
     const dialogRef = this.dialog.open(ReportDialogComponent, {
       data: dialogData,
