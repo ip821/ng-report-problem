@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ReportDialogComponent } from './report-problem/dialog';
 import { IDialogData } from './report-problem/dialog-data';
-import { IObjectURL, VideoRecorder } from './screen-recording/video-recorder';
+import { IObjectURL, VideoRecorder } from './report-problem/video-recorder';
 
 @Component({
   selector: 'app-root',

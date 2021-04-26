@@ -45,7 +45,7 @@
 
     </mat-step>
 
-    <mat-step label="Gather logs"
+    <mat-step label="Create an issue"
       #gatherLogsStep
       [editable]="false">
 
@@ -58,39 +58,17 @@
       <div style="margin-top: 10px; margin-bottom: 10px; display: flex; justify-content: center;"
         *ngIf="!inProgress">
         <mat-icon color="primary">done</mat-icon>
-        <label style="margin-top: 3px;">Done!</label>
+        <label style="margin-top: 3px;">Ticket successfully created!</label>
       </div>
 
       <div style="text-align: center;display: block;">
         <button mat-raised-button
-          color="primary"
+          mat-dialog-close
           [disabled]="inProgress"
-          matStepperNext>Next</button>
-      </div>
-    </mat-step>
-
-    <mat-step label="Complete"
-      [editable]="false">
-      <div style="height: 100%;">
-        <div style="text-align: center;">
-          <p>Ticket successfully created!</p>
-          <button mat-raised-button
-            mat-dialog-close
-            color="primary">Close</button>
-        </div>
+          color="primary">Close</button>
       </div>
     </mat-step>
 
   </mat-horizontal-stepper>
 
 </mat-dialog-content>
-
-<!-- <mat-dialog-actions>
-
-  <button mat-button
-    mat-dialog-close>Cancel</button>
-
-  <button mat-button
-    [mat-dialog-close]="result">Delete</button>
-
-</mat-dialog-actions> -->

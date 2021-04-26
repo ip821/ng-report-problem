@@ -1,6 +1,6 @@
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
 import { MatDialogContainer } from "@angular/material/dialog";
-import { IObjectURL } from "../screen-recording/video-recorder";
+import { IObjectURL } from "./video-recorder";
 
 @Component({
   selector: 'cr-screenshot',
@@ -74,7 +74,8 @@ export class ScreenshotComponent implements OnInit, AfterViewInit {
         this.img.nativeElement.src = this.canvas.nativeElement.toDataURL();
         mediaStream.getTracks().forEach(it => it.stop());
       }
-    } finally {
+    }
+    finally {
       Array.from(document.querySelectorAll('mat-dialog-container'))
         .forEach(node => (<HTMLElement>node).style.display = '');
       this.changeDetector.detectChanges();
